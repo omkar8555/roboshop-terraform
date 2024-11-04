@@ -1,5 +1,5 @@
 module "ec2" {
-    for_each   = var.instance
+    for_each   = var.instances
     source     = "./modules"
     env        = var.env
     app_port   = each.value["app_port"]

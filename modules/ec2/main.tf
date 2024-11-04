@@ -1,7 +1,7 @@
 resource "aws_security_group" "example" {
     name        = "${var.component_name}-${var.env}-sg"
       description = "inbound allow for ${var.component_name}"
-      vpc_id      = aws_vpc.main.id
+
 
   ingress {
         from_port       = 22
@@ -32,6 +32,6 @@ resource "aws_instance" "test" {
     instance_type = "t3.small"
     vpc_security_group_ids = [ data.aws_security_group.sg.id ]
     tags = {
-        Name = "${var.instance_name}-${var.env}"
+        Name = "${var.component_name}-${var.env}"
         }
     }

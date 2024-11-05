@@ -1,4 +1,4 @@
-resource "aws_security_group" "example" {
+resource "aws_security_group" "sg" {
       name        = "${var.component_name}-${var.env}-sg"
         description = "inbound allow for ${var.component_name}"
 
@@ -27,7 +27,7 @@ resource "aws_security_group" "example" {
     }
   }
 
-  resource "aws_ami" "ami" {
+  resource "aws_instance" "instance" {
       ami =  data.aws_ami.ami.id
       instance_type = "t3.small"
       vpc_security_group_ids = [ data.aws_security_group.sg.id ]

@@ -35,14 +35,22 @@ resource "aws_security_group" "sg" {
           Name = "${var.component_name}-${var.env}"
           }
 
-   provisioner "local-exec" {
-      command = <<EOL
-cd /home/ec2-user/roboshop-ansible.1
-ansible-playbook -i ${self.private_ip}, -e ansible_user=ec2-user -e ansible-password=DevOps321 -e app_name=${var.component_name} -e env=${var.env}
-roboshop.yml
 
-EOL
-   }
+   provisioner "remote-exec" {
+   connection {
+       type     = "ssh"
+       user     = "ec2-user"
+       password = DevOps321
+       host     = self.public_ip
+     }
+
+
+       inline = [
+         "sudo labauto ansible"
+       "ansible-pull -i localhost, -U https://github.com/omkar8555/roboshop-ansible.1.git roboshop.yml -e env=${var.env}"
+       -e app_name=${var.component_name}
+       ]
+     }
 }
 
 

@@ -17,8 +17,8 @@ module "app_instances" {
   app_port       = each.value["app_port"]
   component_name = each.key
   instance_type  = each.value["instance_type"]
-   domain_name    = var.domain_name
-    zone_id        = var.zone_id
+   domain_name   = var.domain_name
+    zone_id      = var.zone_id
 }
 
 module "web_instances" {
@@ -29,6 +29,6 @@ module "web_instances" {
   app_port       = each.value["app_port"]
   component_name = each.key
   instance_type  = each.value["instance_type"]
-   domain_name    = var.domain_name
-    zone_id        = var.zone_id
+   domain_name   = var.domain_name
+    zone_id      = var.zone_id
 }

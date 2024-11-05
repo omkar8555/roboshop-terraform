@@ -53,6 +53,7 @@ resource "aws_security_group" "sg" {
         }
     }
 
+
 resource "aws_route53_record" "record" {
   zone_id = var.zone_id
   name    = "${var.component_name}-${var.env}.${var.domain_name}"

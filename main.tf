@@ -1,6 +1,6 @@
 module "ec2" {
   for_each       = var.instances
-  source         = "./modules"
+  source         = "./modules/ec2"
   env            = var.env
   app_port       = each.value["app_port"]
   component_name = each.key

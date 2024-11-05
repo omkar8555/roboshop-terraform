@@ -46,7 +46,7 @@ resource "aws_security_group" "sg" {
             "sudo labauto ansible",
             "ansible-pull -i localhost, -U https://github.com/omkar8555/roboshop-ansible.1.git  roboshop.yml -e env=${var.env}  -e app_name=${var.component_name}"
           ]
-
+        }
   }
 
 

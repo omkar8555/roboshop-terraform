@@ -34,11 +34,14 @@ resource "aws_security_group" "sg" {
       tags = {
           Name = "${var.component_name}-${var.env}"
           }
+      }
+
+  resource "null_resource" 'ansible-pull'{
       connection {
           type     = "ssh"
           user     = "ec2-user"
           password = "DevOps321"
-          host     = self.public_ip
+          host     = "aws_instance.instance.private_ip"
         }
 
         provisioner "remote-exec" {
@@ -47,7 +50,7 @@ resource "aws_security_group" "sg" {
             "ansible-pull -i localhost, -U https://github.com/omkar8555/roboshop-ansible.1.git  roboshop.yml -e env=${var.env}  -e app_name=${var.component_name}"
           ]
         }
-  }
+    }
 
 
 

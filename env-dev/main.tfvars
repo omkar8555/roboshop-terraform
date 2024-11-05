@@ -1,5 +1,8 @@
 env = "dev"
 
+domain_name = "rdevopsb72.shop"
+zone_id     = "Z08947163LH0CXG3JRYK4"
+
 db_instances = {
     mongodb = {
             app_port      = 27017

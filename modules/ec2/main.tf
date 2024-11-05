@@ -37,6 +37,7 @@ resource "aws_security_group" "sg" {
       }
 
   resource "null_resource" "ansible-pull"{
+       provisioner "remote-exec" {
       connection {
           type     = "ssh"
           user     = "ec2-user"
@@ -52,6 +53,13 @@ resource "aws_security_group" "sg" {
         }
     }
 
+resource "aws_route53_record" "record" {
+  zone_id = var.zone_id
+  name    = "${var.component_name}-${var.env}-${var.domain_name}"
+  type    = "A"
+  ttl     = "30"
+  records = [aws_instance.instance.private_ip]
+}
 
 
 

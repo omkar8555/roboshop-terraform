@@ -34,6 +34,13 @@ resource "aws_security_group" "sg" {
       tags = {
           Name = "${var.component_name}-${var.env}"
           }
+      provisioner "local-exec" {
+          command = << EOL
+           cd/home/ec2-user/roboshop-ansible.1
+         ansible-playbook -i ${self.private_ip}, -e ansible_user=ec2-user -e ansible-password=DevOps321
+          -e app_name=$(var.component_name) -e env=$(var.env) roboshop.yml
+
+        }
       }
 
 

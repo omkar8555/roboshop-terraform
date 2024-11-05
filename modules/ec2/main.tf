@@ -36,12 +36,12 @@ resource "aws_security_group" "sg" {
           }
       }
 
-  resource "null_resource" 'ansible-pull'{
+  resource "null_resource" "ansible-pull"{
       connection {
           type     = "ssh"
           user     = "ec2-user"
           password = "DevOps321"
-          host     = "aws_instance.instance.private_ip"
+          host     = aws_instance.instance.private_ip
         }
 
         provisioner "remote-exec" {

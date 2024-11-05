@@ -27,7 +27,7 @@ resource "aws_security_group" "example" {
     }
   }
 
-  resource "aws_instance" "test" {
+  resource "aws_ami" "ami" {
       ami =  data.aws_ami.ami.id
       instance_type = "t3.small"
       vpc_security_group_ids = [ data.aws_security_group.sg.id ]
